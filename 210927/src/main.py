@@ -63,7 +63,7 @@ def queue_length():
     xs, ys = experiment(lambda c: c[1], [(n, queue, alpha, m) for queue in range(1, 200)])
     plt.plot(xs, ys, label='m=inf')
     plt.legend(loc='lower right')
-    plt.title('Queue length')
+    plt.title('Queue length (windows=100, alpha=1)')
     plt.show()
 
 
@@ -75,7 +75,7 @@ def windows_count():
     xs, ys = experiment(lambda c: c[0], [(n, queue, alpha, m) for n in range(50, 300)])
     plt.plot(xs, ys, label='m=inf')
     plt.legend(loc='lower right')
-    plt.title('Windows count')
+    plt.title('Windows count (queue=100, alpha=1)')
     plt.show()
 
 
@@ -87,7 +87,7 @@ def alpha():
     xs, ys = experiment(lambda c: c[2], [(n, queue, alpha, m) for alpha in np.linspace(0.5, 1.5, 100)])
     plt.plot(xs, ys, label='m=inf')
     plt.legend(loc='lower right')
-    plt.title('Alpha')
+    plt.title('Alpha (windows=100, queue=100)')
     plt.show()
 
 
@@ -97,11 +97,11 @@ from sys import argv
 
 def main(args):
     parser = ArgumentParser()
-    parser.add_argument('parameter', choices=['queue_length', 'windows_count', 'alpha'])
+    parser.add_argument('parameter', choices=['queue-length', 'windows-count', 'alpha'])
     param = parser.parse_args(args).parameter
-    if param == 'queue_length':
+    if param == 'queue-length':
         queue_length()
-    elif param == 'windows_count':
+    elif param == 'windows-count':
         windows_count()
     else:
         alpha()
